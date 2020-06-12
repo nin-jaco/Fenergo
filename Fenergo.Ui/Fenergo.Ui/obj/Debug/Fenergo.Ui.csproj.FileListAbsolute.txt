@@ -116,3 +116,5 @@ C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\obj\Debug\Fenergo.Ui.csproj.Gene
 C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\obj\Debug\Fenergo.Ui.Migrations.basicTables.resources
 C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\obj\Debug\Fenergo.Ui.Migrations.populateHardwareTypes.resources
 C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\obj\Debug\Fenergo.Ui.Migrations.dataAnnotations.resources
+C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\bin\AutoMapper.dll
+C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\bin\AutoMapper.xml
