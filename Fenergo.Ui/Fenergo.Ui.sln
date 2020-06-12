@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenergo.Ui", "Fenergo.Ui\Fenergo.Ui.csproj", "{D268A911-290A-4375-9A65-9D92A7067454}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenergo.Ui.Tests", "Fenergo.Ui.Tests\Fenergo.Ui.Tests.csproj", "{E868CDAE-E9E7-4937-A56F-1E6D13D0D03F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D268A911-290A-4375-9A65-9D92A7067454}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D268A911-290A-4375-9A65-9D92A7067454}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D268A911-290A-4375-9A65-9D92A7067454}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D268A911-290A-4375-9A65-9D92A7067454}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E868CDAE-E9E7-4937-A56F-1E6D13D0D03F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E868CDAE-E9E7-4937-A56F-1E6D13D0D03F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E868CDAE-E9E7-4937-A56F-1E6D13D0D03F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E868CDAE-E9E7-4937-A56F-1E6D13D0D03F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C544DAD6-F9CB-498B-AE83-3B50B371EE2D}
+	EndGlobalSection
+EndGlobal
