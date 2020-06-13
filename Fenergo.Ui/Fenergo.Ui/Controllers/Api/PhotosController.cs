@@ -16,7 +16,7 @@ namespace Fenergo.Ui.Controllers.Api
 {
     public class PhotosController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        
 
         // GET: api/Photos
         public IEnumerable<PhotoDto> GetPhotos()

@@ -11,24 +11,30 @@ using System.Web.Http.Description;
 using AutoMapper;
 using Fenergo.Ui.Dtos;
 using Fenergo.Ui.Models;
+using Fenergo.Ui.Repositories;
 
 namespace Fenergo.Ui.Controllers.Api
 {
     public class HardwaresController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private IHardwareRepository _repository;
+
+        public HardwaresController(IHardwareRepository repository)
+        {
+            _repository = repository;
+        }
 
         // GET: api/Hardwares
         public IEnumerable<HardwareDto> GetHardwares()
         {
-            return db.Hardwares.ToList().Select(Mapper.Map<Hardware, HardwareDto>);
+            return _repository.GetAll().Select(Mapper.Map<Hardware, HardwareDto>);
         }
 
         // GET: api/Hardwares/5
         [ResponseType(typeof(HardwareDto))]
         public IHttpActionResult GetHardware(int id)
         {
-            var hardware = db.Hardwares.Find(id);
+            var hardware = _repository.Get(id);
             if (hardware == null)
             {
                 return NotFound();
@@ -46,7 +52,7 @@ namespace Fenergo.Ui.Controllers.Api
                 return BadRequest(ModelState);
             }
 
-            var hardware = db.Hardwares.Find(id);
+            var hardware = _repository.Get(id);
             if (hardware == null) return NotFound();
 
             if (id != hardware.Id)
@@ -55,23 +61,7 @@ namespace Fenergo.Ui.Controllers.Api
             }
 
             Mapper.Map(hardwareDto, hardware);
-            db.Entry(hardware).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!HardwareExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            hardware = _repository.Update(hardware);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -86,8 +76,7 @@ namespace Fenergo.Ui.Controllers.Api
             }
 
             var hardware = Mapper.Map<HardwareDto, Hardware>(hardwareDto);
-            db.Hardwares.Add(hardware);
-            db.SaveChanges();
+            hardware = _repository.Create(hardware);
 
             return CreatedAtRoute("DefaultApi", new { id = hardware.Id }, hardwareDto);
         }
@@ -96,30 +85,11 @@ namespace Fenergo.Ui.Controllers.Api
         [ResponseType(typeof(HardwareDto))]
         public IHttpActionResult DeleteHardware(int id)
         {
-            Hardware hardware = db.Hardwares.Find(id);
-            if (hardware == null)
-            {
-                return NotFound();
-            }
-
-            db.Hardwares.Remove(hardware);
-            db.SaveChanges();
+            var hardware = _repository.Delete(id);
 
             return Ok(Mapper.Map<Hardware, HardwareDto>(hardware));
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool HardwareExists(int id)
-        {
-            return db.Hardwares.Count(e => e.Id == id) > 0;
-        }
+        
     }
 }
