@@ -4,12 +4,23 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using Fenergo.Ui.Models;
+using Unity.Storage;
 
 namespace Fenergo.Ui.Repositories
 {
     public class PhotoRepository : IPhotoRepository
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private IApplicationDbContext db = new ApplicationDbContext();
+
+        public PhotoRepository()
+        {
+            
+        }
+
+        public PhotoRepository(IApplicationDbContext context)
+        {
+            db = context;
+        }
 
         public IEnumerable<Photo> GetAll()
         {
@@ -21,32 +32,32 @@ namespace Fenergo.Ui.Repositories
             return db.Photos.Find(id);
         }
 
-        public Photo Update(Photo hardware)
+        public Photo Update(Photo photo)
         {
-            db.Entry(hardware).State = EntityState.Modified;
-
+            //db.Entry(photo).State = EntityState.Modified;
+            db.MarkAsModified(photo);
             db.SaveChanges();
-            return hardware;
+            return photo;
         }
 
-        public Photo Create(Photo hardware)
+        public Photo Create(Photo photo)
         {
-            db.Photos.Add(hardware);
+            db.Photos.Add(photo);
             db.SaveChanges();
-            return hardware;
+            return photo;
         }
 
         public Photo Delete(int id)
         {
-            Photo hardware = db.Photos.Find(id);
-            if (hardware == null)
+            Photo photo = db.Photos.Find(id);
+            if (photo == null)
             {
                 return null;
             }
 
-            db.Photos.Remove(hardware);
+            db.Photos.Remove(photo);
             db.SaveChanges();
-            return hardware;
+            return photo;
         }
 
 

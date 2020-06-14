@@ -57,3 +57,11 @@ C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui.Tests\obj\Debug\Fenergo.Ui.Tests
 C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui.Tests\obj\Debug\Fenergo.Ui.Tests.csproj.CopyComplete
 C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui.Tests\obj\Debug\Fenergo.Ui.Tests.dll
 C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui.Tests\obj\Debug\Fenergo.Ui.Tests.pdb
+C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui.Tests\bin\Debug\Unity.Abstractions.dll
+C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui.Tests\bin\Debug\Unity.Container.dll
+C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui.Tests\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui.Tests\bin\Debug\Unity.Abstractions.pdb
+C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui.Tests\bin\Debug\Unity.Container.pdb
+C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui.Tests\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui.Tests\bin\Debug\EntityFramework.SqlServer.dll
+C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui.Tests\bin\Debug\EntityFramework.SqlServer.xml

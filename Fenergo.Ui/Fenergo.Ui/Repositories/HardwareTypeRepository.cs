@@ -21,32 +21,32 @@ namespace Fenergo.Ui.Repositories
             return db.HardwareTypes.Find(id);
         }
 
-        public HardwareType Update(HardwareType hardware)
+        public HardwareType Update(HardwareType hardwareType)
         {
-            db.Entry(hardware).State = EntityState.Modified;
+            db.Entry(hardwareType).State = EntityState.Modified;
 
             db.SaveChanges();
-            return hardware;
+            return hardwareType;
         }
 
-        public HardwareType Create(HardwareType hardware)
+        public HardwareType Create(HardwareType hardwareType)
         {
-            db.HardwareTypes.Add(hardware);
+            db.HardwareTypes.Add(hardwareType);
             db.SaveChanges();
-            return hardware;
+            return hardwareType;
         }
 
         public HardwareType Delete(int id)
         {
-            HardwareType hardware = db.HardwareTypes.Find(id);
-            if (hardware == null)
+            HardwareType hardwareType = db.HardwareTypes.Find(id);
+            if (hardwareType == null)
             {
                 return null;
             }
 
-            db.HardwareTypes.Remove(hardware);
+            db.HardwareTypes.Remove(hardwareType);
             db.SaveChanges();
-            return hardware;
+            return hardwareType;
         }
 
 

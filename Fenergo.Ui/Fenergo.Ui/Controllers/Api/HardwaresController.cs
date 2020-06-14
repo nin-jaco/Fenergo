@@ -27,7 +27,7 @@ namespace Fenergo.Ui.Controllers.Api
         // GET: api/Hardwares
         public IEnumerable<HardwareDto> GetHardwares()
         {
-            return _repository.GetAll().Select(Mapper.Map<Hardware, HardwareDto>);
+            return _repository.GetAll().Select(MapBackToDto);
         }
 
         // GET: api/Hardwares/5
@@ -40,7 +40,7 @@ namespace Fenergo.Ui.Controllers.Api
                 return NotFound();
             }
 
-            return Ok(Mapper.Map<Hardware, HardwareDto>(hardware));
+            return Ok(MapBackToDto(hardware));
         }
 
         // PUT: api/Hardwares/5
@@ -52,16 +52,15 @@ namespace Fenergo.Ui.Controllers.Api
                 return BadRequest(ModelState);
             }
 
-            var hardware = _repository.Get(id);
+            var hardware = GetHardware(id);
             if (hardware == null) return NotFound();
 
-            if (id != hardware.Id)
+            if (id != hardwareDto.Id)
             {
                 return BadRequest();
             }
 
-            Mapper.Map(hardwareDto, hardware);
-            hardware = _repository.Update(hardware);
+            var hardwareDb = _repository.Update(MapBackToModel(hardwareDto));
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -75,7 +74,7 @@ namespace Fenergo.Ui.Controllers.Api
                 return BadRequest(ModelState);
             }
 
-            var hardware = Mapper.Map<HardwareDto, Hardware>(hardwareDto);
+            var hardware = MapBackToModel(hardwareDto);
             hardware = _repository.Create(hardware);
 
             return CreatedAtRoute("DefaultApi", new { id = hardware.Id }, hardwareDto);
@@ -87,9 +86,17 @@ namespace Fenergo.Ui.Controllers.Api
         {
             var hardware = _repository.Delete(id);
 
-            return Ok(Mapper.Map<Hardware, HardwareDto>(hardware));
+            return Ok(MapBackToDto(hardware));
         }
 
-        
+        public static HardwareDto MapBackToDto(Hardware hardware)
+        {
+            return Mapper.Map<Hardware, HardwareDto>(hardware);
+        }
+
+        public static Hardware MapBackToModel(HardwareDto hardwareDto)
+        {
+            return Mapper.Map<HardwareDto, Hardware>(hardwareDto);
+        }
     }
 }

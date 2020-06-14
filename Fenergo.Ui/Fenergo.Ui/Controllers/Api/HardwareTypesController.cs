@@ -25,7 +25,7 @@ namespace Fenergo.Ui.Controllers.Api
         }
 
         // GET: api/HardwareTypes
-        public IEnumerable<HardwareTypeDto> GetHardwares()
+        public IEnumerable<HardwareTypeDto> GetHardwareTypes()
         {
             return _repository.GetAll().Select(Mapper.Map<HardwareType, HardwareTypeDto>);
         }
@@ -78,7 +78,7 @@ namespace Fenergo.Ui.Controllers.Api
             var hardwareType = Mapper.Map<HardwareTypeDto, HardwareType>(hardwareTypeDto);
             hardwareType = _repository.Create(hardwareType);
 
-            return CreatedAtRoute("DefaultApi", new { id = hardwareType.Id }, hardwareTypeDto);
+            return CreatedAtRoute("HardwareApi", new { id = hardwareType.Id }, hardwareTypeDto);
         }
 
         // DELETE: api/HardwareTypes/5

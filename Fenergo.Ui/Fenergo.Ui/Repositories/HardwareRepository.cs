@@ -10,7 +10,17 @@ namespace Fenergo.Ui.Repositories
 {
     public class HardwareRepository : IHardwareRepository
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private IApplicationDbContext db = new ApplicationDbContext();
+
+        public HardwareRepository()
+        {
+            
+        }
+
+        public HardwareRepository(IApplicationDbContext context)
+        {
+            db = context;
+        }
 
         public IEnumerable<Hardware> GetAll()
         {
@@ -24,8 +34,8 @@ namespace Fenergo.Ui.Repositories
 
         public Hardware Update(Hardware hardware)
         {
-            db.Entry(hardware).State = EntityState.Modified;
-
+            //db.Entry(hardware).State = EntityState.Modified;
+            db.MarkAsModified(hardware);
             db.SaveChanges();
             return hardware;
         }

@@ -10,8 +10,8 @@ namespace Fenergo.Ui.Repositories
     {
         IEnumerable<Photo> GetAll();
         Photo Get(int id);
-        Photo Update(Photo hardware);
-        Photo Create(Photo hardware);
+        Photo Update(Photo photo);
+        Photo Create(Photo photo);
         Photo Delete(int id);
     }
 }

@@ -10,8 +10,8 @@ namespace Fenergo.Ui.Repositories
     {
         IEnumerable<HardwareType> GetAll();
         HardwareType Get(int id);
-        HardwareType Update(HardwareType hardware);
-        HardwareType Create(HardwareType hardware);
+        HardwareType Update(HardwareType hardwareType);
+        HardwareType Create(HardwareType hardwareType);
         HardwareType Delete(int id);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Fenergo.Ui.Repositories;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -18,7 +19,7 @@ namespace Fenergo.Ui.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         public DbSet<Photo> Photos { get; set; }
         public DbSet<HardwareType> HardwareTypes { get; set; }
@@ -31,6 +32,16 @@ namespace Fenergo.Ui.Models
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        public void MarkAsModified(Hardware item)
+        {
+            Entry(item).State = EntityState.Modified;
+        }
+
+        public void MarkAsModified(Photo item)
+        {
+            Entry(item).State = EntityState.Modified;
         }
     }
 }

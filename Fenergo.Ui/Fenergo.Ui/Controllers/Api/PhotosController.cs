@@ -11,24 +11,30 @@ using System.Web.Http.Description;
 using AutoMapper;
 using Fenergo.Ui.Dtos;
 using Fenergo.Ui.Models;
+using Fenergo.Ui.Repositories;
 
 namespace Fenergo.Ui.Controllers.Api
 {
     public class PhotosController : ApiController
     {
-        
+        private IPhotoRepository _repository;
+
+        public PhotosController(IPhotoRepository repository)
+        {
+            _repository = repository;
+        }
 
         // GET: api/Photos
         public IEnumerable<PhotoDto> GetPhotos()
         {
-            return db.Photos.ToList().Select(Mapper.Map<Photo, PhotoDto>);
+            return _repository.GetAll().Select(Mapper.Map<Photo, PhotoDto>);
         }
 
         // GET: api/Photos/5
         [ResponseType(typeof(PhotoDto))]
         public IHttpActionResult GetPhoto(int id)
         {
-            var photo = db.Photos.Find(id);
+            var photo = _repository.Get(id);
             if (photo == null)
             {
                 return NotFound();
@@ -46,7 +52,7 @@ namespace Fenergo.Ui.Controllers.Api
                 return BadRequest(ModelState);
             }
 
-            var photo = db.Photos.Find(id);
+            var photo = _repository.Get(id);
             if (photo == null) return NotFound();
 
             if (id != photo.Id)
@@ -55,23 +61,7 @@ namespace Fenergo.Ui.Controllers.Api
             }
 
             Mapper.Map(photoDto, photo);
-            db.Entry(photo).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PhotoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            photo = _repository.Update(photo);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -86,40 +76,20 @@ namespace Fenergo.Ui.Controllers.Api
             }
 
             var photo = Mapper.Map<PhotoDto, Photo>(photoDto);
-            db.Photos.Add(photo);
-            db.SaveChanges();
+            photo = _repository.Create(photo);
 
-            return CreatedAtRoute("DefaultApi", new { id = photo.Id }, photoDto);
+            return CreatedAtRoute("PhotosApi", new { id = photo.Id }, photoDto);
         }
 
         // DELETE: api/Photos/5
         [ResponseType(typeof(PhotoDto))]
         public IHttpActionResult DeletePhoto(int id)
         {
-            Photo photo = db.Photos.Find(id);
-            if (photo == null)
-            {
-                return NotFound();
-            }
-
-            db.Photos.Remove(photo);
-            db.SaveChanges();
+            var photo = _repository.Delete(id);
 
             return Ok(Mapper.Map<Photo, PhotoDto>(photo));
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool PhotoExists(int id)
-        {
-            return db.Photos.Count(e => e.Id == id) > 0;
-        }
+        
     }
 }

@@ -118,3 +118,9 @@ C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\obj\Debug\Fenergo.Ui.Migrations.
 C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\obj\Debug\Fenergo.Ui.Migrations.dataAnnotations.resources
 C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\bin\AutoMapper.dll
 C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\bin\AutoMapper.xml
+C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\bin\Unity.Abstractions.dll
+C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\bin\Unity.Container.dll
+C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\bin\Unity.Abstractions.pdb
+C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\bin\Unity.Container.pdb
