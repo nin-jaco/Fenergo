@@ -6,4 +6,46 @@
 
 <h2>Edit Item</h2>
 
+<form>
+    <div class="form-group">
+        <label>Description</label>
+        <input type="text" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Serial Number</label>
+        <input type="text" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Purchase Price</label>
+        <input type="text" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Hardware Type</label>
+        <input type="text" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Photo</label>
+        <input type="text" value="" class="form-control" />
+    </div>
+    <button class="btn btn-submit" type="submit"></button>
+</form>
 
+@section scripts{
+    <script>
+        var bestPictures = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            prefetch: '../data/films/post_1960.json',
+            remote: {
+                url: '../data/films/queries/%QUERY.json',
+                wildcard: '%QUERY'
+            }
+        });
+
+        $('#remote .typeahead').typeahead(null, {
+            name: 'best-pictures',
+            display: 'value',
+            source: bestPictures
+        });
+    </script>
+}

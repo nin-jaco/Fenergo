@@ -31,6 +31,7 @@ namespace Fenergo.Ui.Controllers.Api
         }
 
         // GET: api/Hardwares/5
+        [HttpGet]
         [ResponseType(typeof(HardwareDto))]
         public IHttpActionResult GetHardware(int id)
         {
@@ -44,6 +45,7 @@ namespace Fenergo.Ui.Controllers.Api
         }
 
         // PUT: api/Hardwares/5
+        [HttpPut]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutHardware(int id, HardwareDto hardwareDto)
         {
@@ -66,6 +68,7 @@ namespace Fenergo.Ui.Controllers.Api
         }
 
         // POST: api/Hardwares
+        [HttpPost]
         [ResponseType(typeof(HardwareDto))]
         public IHttpActionResult PostHardware(HardwareDto hardwareDto)
         {
@@ -81,6 +84,7 @@ namespace Fenergo.Ui.Controllers.Api
         }
 
         // DELETE: api/Hardwares/5
+        [HttpDelete]
         [ResponseType(typeof(HardwareDto))]
         public IHttpActionResult DeleteHardware(int id)
         {

@@ -24,7 +24,7 @@ namespace Fenergo.Ui.Repositories
 
         public IEnumerable<Hardware> GetAll()
         {
-            return db.Hardwares.ToList();
+            return db.Hardwares.Include("HardwareType").Include("Photo").ToList();
         }
 
         public Hardware Get(int id)

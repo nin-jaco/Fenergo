@@ -19,5 +19,8 @@ namespace Fenergo.Ui.Dtos
         public int IdPhoto { get; set; }
         [Display(Name = "Purchase Price")]
         public decimal PurchasePrice { get; set; }
+
+        public PhotoDto Photo { get; set; }
+        public HardwareTypeDto HardwareType { get; set; }
     }
 }

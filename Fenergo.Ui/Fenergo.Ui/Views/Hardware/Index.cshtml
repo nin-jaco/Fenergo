@@ -23,7 +23,7 @@
 {
     <script>
         $(document).ready(function() {
-            $("#hardware").DataTable({
+            var table = $("#hardware").DataTable({
                 ajax: {
                     url: "/api/hardwares",
                     dataSrc:""
@@ -36,13 +36,13 @@
                         }
                     },
                     {
-                        data: "name"
+                        data: "hardwareType.name"
                     },
                     {
                         data: "serialNumber"
                     },
                     {
-                        data: "photo"
+                        data: "photo.fileName"
                     },
                     {
                         data: "purchasePrice"
