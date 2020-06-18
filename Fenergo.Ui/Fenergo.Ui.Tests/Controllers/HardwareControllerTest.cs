@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Web.Http.Results;
 using AutoMapper;
 using Fenergo.Ui.App_Start;
@@ -80,10 +81,10 @@ namespace Fenergo.Ui.Tests.Controllers
             context.SaveChanges();
 
             var controller = new HardwaresController(new HardwareRepository(context));
-            var result = (TestHardwareDbSet) controller.GetHardwares();
+            var result = controller.GetHardwares();
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(3, result.Local.Count);
+            Assert.AreEqual(3, result.Count());
         }
 
         [TestMethod]

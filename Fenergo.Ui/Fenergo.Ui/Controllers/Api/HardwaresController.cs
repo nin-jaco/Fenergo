@@ -27,7 +27,8 @@ namespace Fenergo.Ui.Controllers.Api
         // GET: api/Hardwares
         public IEnumerable<HardwareDto> GetHardwares()
         {
-            return _repository.GetAll().Select(MapBackToDto);
+            var results = _repository.GetAll().Select(MapBackToDto);
+            return results;
         }
 
         // GET: api/Hardwares/5
