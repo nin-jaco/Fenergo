@@ -1,5 +1,7 @@
 ﻿using System.Net;
 using System.Web.Http.Results;
+using AutoMapper;
+using Fenergo.Ui.App_Start;
 using Fenergo.Ui.Controllers.Api;
 using Fenergo.Ui.Dtos;
 using Fenergo.Ui.Models;
@@ -9,10 +11,17 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Fenergo.Ui.Tests.Controllers
 {
     [TestClass]
-    public class TestProductController
+    public class TestHardwareController : Profile
     {
+        [AssemblyInitialize]
+        public static void AssemblyInit(TestContext context)
+        {
+            var mappingProfile = new MappingProfile();
+
+        }
+
         [TestMethod]
-        public void PostProduct_ShouldReturnSameProduct()
+        public void PostHardware_ShouldReturnSameHardware()
         {
             var controller = new HardwaresController(new HardwareRepository(new TestAppContext()));
 
@@ -28,7 +37,7 @@ namespace Fenergo.Ui.Tests.Controllers
         }
 
         [TestMethod]
-        public void PutProduct_ShouldReturnStatusCode()
+        public void PutHardware_ShouldReturnStatusCode()
         {
             var controller = new HardwaresController(new HardwareRepository(new TestAppContext()));
 
@@ -41,7 +50,7 @@ namespace Fenergo.Ui.Tests.Controllers
         }
 
         [TestMethod]
-        public void PutProduct_ShouldFail_WhenDifferentID()
+        public void PutHardware_ShouldFail_WhenDifferentID()
         {
             var controller = new HardwaresController(new HardwareRepository(new TestAppContext()));
 
@@ -50,49 +59,49 @@ namespace Fenergo.Ui.Tests.Controllers
         }
 
         [TestMethod]
-        public void GetProduct_ShouldReturnProductWithSameID()
+        public void GetHardware_ShouldReturnHardwareWithSameID()
         {
             var context = new HardwareRepository(new TestAppContext());
             var controller = new HardwaresController(context);
-            var hardware = controller.PostHardware(GetDemoHardware());
-            var result = controller.GetHardware(3) as OkNegotiatedContentResult<Hardware>;
+            var hardware = controller.PostHardware(GetDemoHardware()) as CreatedAtRouteNegotiatedContentResult<HardwareDto>;
+            var result = controller.GetHardware(hardware.Content.Id) as OkNegotiatedContentResult<HardwareDto>;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(3, result.Content.Id);
+            Assert.AreEqual(hardware.Content.Id, result.Content.Id);
         }
 
         [TestMethod]
-        public void GetProducts_ShouldReturnAllProducts()
+        public void GetHardwares_ShouldReturnAllHardwares()
         {
             var context = new TestAppContext();
-            context.Hardwares.Add(new Hardware { Id = 1, Description = "Demo1", PurchasePrice = 20 });
-            context.Hardwares.Add(new Hardware { Id = 2, Description = "Demo2", PurchasePrice = 30 });
-            context.Hardwares.Add(new Hardware { Id = 3, Description = "Demo3", PurchasePrice = 40 });
+            context.Hardwares.Add(new Hardware { Id = 1, IdHardwareType = 2, Description = "Demo name1", PurchasePrice = 5, IdPhoto = null, SerialNumber = "Abc123" });
+            context.Hardwares.Add(new Hardware { Id = 2, IdHardwareType = 2, Description = "Demo name2", PurchasePrice = 5, IdPhoto = null, SerialNumber = "Abc123" });
+            context.Hardwares.Add(new Hardware { Id = 3, IdHardwareType = 2, Description = "Demo name3", PurchasePrice = 5, IdPhoto = null, SerialNumber = "Abc123" });
+            context.SaveChanges();
 
             var controller = new HardwaresController(new HardwareRepository(context));
-            var result = controller.GetHardwares() as TestHardwareDbSet;
+            var result = (TestHardwareDbSet) controller.GetHardwares();
 
             Assert.IsNotNull(result);
             Assert.AreEqual(3, result.Local.Count);
         }
 
         [TestMethod]
-        public void DeleteProduct_ShouldReturnOK()
+        public void DeleteHardware_ShouldReturnOK()
         {
             var context = new TestAppContext();
             var controller = new HardwaresController(new HardwareRepository(context));
-            var item = GetDemoHardware();
-            controller.PostHardware(item);
-            
-            var result = controller.DeleteHardware(3) as OkNegotiatedContentResult<Hardware>;
+            var item = controller.PostHardware(GetDemoHardware()) as CreatedAtRouteNegotiatedContentResult<HardwareDto>;
+
+            var result = controller.DeleteHardware(item.Content.Id) as OkNegotiatedContentResult<HardwareDto>;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(item.Id, result.Content.Id);
+            Assert.AreEqual(item.Content.Id, result.Content.Id);
         }
 
         HardwareDto GetDemoHardware()
         {
-            return new HardwareDto { Id = 3, Description = "Demo name", PurchasePrice = 5 };
+            return new HardwareDto { Id = 1, IdHardwareType = 2, Description = "Demo name", PurchasePrice = 5, IdPhoto = null, SerialNumber = "Abc123"};
         }
     }
 }

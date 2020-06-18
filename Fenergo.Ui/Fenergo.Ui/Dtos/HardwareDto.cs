@@ -16,7 +16,7 @@ namespace Fenergo.Ui.Dtos
         public string Description { get; set; }
         [Display(Name = "Serial Number")]
         public string SerialNumber { get; set; }
-        public int IdPhoto { get; set; }
+        public int? IdPhoto { get; set; }
         [Display(Name = "Purchase Price")]
         public decimal PurchasePrice { get; set; }
 

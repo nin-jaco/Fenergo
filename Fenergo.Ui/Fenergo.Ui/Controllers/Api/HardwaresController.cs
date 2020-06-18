@@ -79,6 +79,7 @@ namespace Fenergo.Ui.Controllers.Api
 
             var hardware = MapBackToModel(hardwareDto);
             hardware = _repository.Create(hardware);
+            hardwareDto = MapBackToDto(hardware);
 
             return CreatedAtRoute("DefaultApi", new { id = hardware.Id }, hardwareDto);
         }

@@ -222,6 +222,10 @@
     <Compile Include="Migrations\202006122136147_dataAnnotations.Designer.cs">
       <DependentUpon>202006122136147_dataAnnotations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006180352185_nullablePotoId.cs" />
+    <Compile Include="Migrations\202006180352185_nullablePotoId.Designer.cs">
+      <DependentUpon>202006180352185_nullablePotoId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Hardware.cs" />
@@ -511,6 +515,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006122136147_dataAnnotations.resx">
       <DependentUpon>202006122136147_dataAnnotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006180352185_nullablePotoId.resx">
+      <DependentUpon>202006180352185_nullablePotoId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

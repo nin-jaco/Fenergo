@@ -16,7 +16,7 @@ namespace Fenergo.Ui.Models
         public string Description { get; set; }
         public string SerialNumber { get; set; }
         public Photo Photo { get; set; }
-        public int IdPhoto { get; set; }
+        public int? IdPhoto { get; set; }
         public decimal PurchasePrice { get; set; }
     }
 }

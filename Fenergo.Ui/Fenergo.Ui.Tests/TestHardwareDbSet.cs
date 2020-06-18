@@ -7,7 +7,7 @@ using Fenergo.Ui.Models;
 
 namespace Fenergo.Ui.Tests
 {
-    class TestHardwareDbSet :TestDbSet<Hardware>
+    class TestHardwareDbSet :TestDbSet<Hardware>, IEnumerable<Hardware>
     {
         public override Hardware Find(params object[] keyValues)
         {

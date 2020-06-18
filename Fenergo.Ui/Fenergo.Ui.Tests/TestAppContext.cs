@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Fenergo.Ui.Models;
 using Fenergo.Ui.Repositories;
 
@@ -18,6 +19,7 @@ namespace Fenergo.Ui.Tests
         public DbSet<Photo> Photos { get; set; }
         public DbSet<HardwareType> HardwareTypes { get; set; }
         public DbSet<Hardware> Hardwares { get; set; }
+
         public int SaveChanges()
         {
             return 0;

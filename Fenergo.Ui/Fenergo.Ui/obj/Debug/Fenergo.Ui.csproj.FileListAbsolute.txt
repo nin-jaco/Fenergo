@@ -124,3 +124,4 @@ C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\bin\Unity.Container.dll
 C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\bin\Unity.Abstractions.pdb
 C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\bin\Unity.Container.pdb
+C:\Source\fenergo\Fenergo\Fenergo.Ui\Fenergo.Ui\obj\Debug\Fenergo.Ui.Migrations.nullablePotoId.resources
