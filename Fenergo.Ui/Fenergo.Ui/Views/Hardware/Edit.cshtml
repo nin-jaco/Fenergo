@@ -9,19 +9,19 @@
 <form>
     <div class="form-group">
         <label>Description</label>
-        <input type="text" value="" class="form-control" />
+        <input type="text" value="" class="form-control" id="tbDescription" name="tbDescription" required />
     </div>
     <div class="form-group">
         <label>Serial Number</label>
-        <input type="text" value="" class="form-control" />
+        <input type="text" value="" class="form-control" id="tbSerialNumber" name="tbSerialNumber" required />
     </div>
     <div class="form-group">
         <label>Purchase Price</label>
-        <input type="text" value="" class="form-control" />
+        <input type="text" value="" class="form-control" required type="number" id="tbPurchasePrice" name="tbPurchasePrice" />
     </div>
     <div class="form-group">
         <label>Hardware Type</label>
-        <input type="text" value="" class="form-control" />
+        <ul id="hardwareTypes" name="hardwareTypes" class="list-group"></ul>
     </div>
     <div class="form-group">
         <label>Photo</label>
@@ -32,20 +32,24 @@
 
 @section scripts{
     <script>
-        var bestPictures = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+        var hardwareTypes = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
-            prefetch: '../data/films/post_1960.json',
             remote: {
-                url: '../data/films/queries/%QUERY.json',
+                url: '/api/hardwareTypes?query=%QUERY',
                 wildcard: '%QUERY'
             }
         });
 
-        $('#remote .typeahead').typeahead(null, {
-            name: 'best-pictures',
-            display: 'value',
-            source: bestPictures
-        });
+        $('#customer').typeahead({minLength: 3, highlight: true},
+            {
+                name: 'hardwareTypes',
+                display: 'name',
+                source: hardwareTypes
+            }).on("typeahead:select", function(e, hardwareType) {
+            vm.hardwareTypeId = hardwareType.Id;
+            });
+
+
     </script>
 }

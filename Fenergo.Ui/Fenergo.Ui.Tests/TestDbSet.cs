@@ -9,7 +9,7 @@ namespace Fenergo.Ui.Tests
     public class TestDbSet<T> : DbSet<T>, IQueryable, IEnumerable<T>
         where T : class
     {
-        IEnumerable<T> _data;
+        ObservableCollection<T> _data;
         IQueryable _query;
 
         public TestDbSet()
