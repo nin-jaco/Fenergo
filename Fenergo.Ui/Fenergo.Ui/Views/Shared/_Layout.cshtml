@@ -6,7 +6,7 @@
     <title>@ViewBag.Title - My Hardware Manager</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @Scripts.Render("~/bundles/lib")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -37,7 +37,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/lib")
+    
     @RenderSection("scripts", required: false)
 </body>
 </html>
