@@ -9,50 +9,60 @@ namespace Fenergo.Ui.Repositories
 {
     public class HardwareTypeRepository : IHardwareTypeRepository
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private IApplicationDbContext _applicationDbContext;
+
+        public HardwareTypeRepository()
+        {
+            _applicationDbContext = new ApplicationDbContext();
+        }
+
+        public HardwareTypeRepository(IApplicationDbContext context)
+        {
+            _applicationDbContext = context;
+        }
 
         public IEnumerable<HardwareType> GetAll()
         {
-            return db.HardwareTypes.ToList();
+            return _applicationDbContext.HardwareTypes.ToList();
         }
 
         public HardwareType Get(int id)
         {
-            return db.HardwareTypes.Find(id);
+            return _applicationDbContext.HardwareTypes.Find(id);
         }
 
         public HardwareType Update(HardwareType hardwareType)
         {
-            db.Entry(hardwareType).State = EntityState.Modified;
+            _applicationDbContext.MarkAsModified(hardwareType);
 
-            db.SaveChanges();
+            _applicationDbContext.SaveChanges();
             return hardwareType;
         }
 
         public HardwareType Create(HardwareType hardwareType)
         {
-            db.HardwareTypes.Add(hardwareType);
-            db.SaveChanges();
+            _applicationDbContext.HardwareTypes.Add(hardwareType);
+            _applicationDbContext.SaveChanges();
             return hardwareType;
         }
 
         public HardwareType Delete(int id)
         {
-            HardwareType hardwareType = db.HardwareTypes.Find(id);
+            HardwareType hardwareType = _applicationDbContext.HardwareTypes.Find(id);
             if (hardwareType == null)
             {
                 return null;
             }
 
-            db.HardwareTypes.Remove(hardwareType);
-            db.SaveChanges();
+            _applicationDbContext.HardwareTypes.Remove(hardwareType);
+            _applicationDbContext.SaveChanges();
             return hardwareType;
         }
 
 
         private bool HardwareTypeExists(int id)
         {
-            return db.HardwareTypes.Count(e => e.Id == id) > 0;
+            return _applicationDbContext.HardwareTypes.Count(e => e.Id == id) > 0;
         }
     }
 }

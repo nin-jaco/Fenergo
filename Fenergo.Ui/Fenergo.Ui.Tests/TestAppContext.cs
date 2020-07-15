@@ -35,6 +35,11 @@ namespace Fenergo.Ui.Tests
             
         }
 
+        public void MarkAsModified(HardwareType item)
+        {
+            
+        }
+
         public void Dispose()
         {
 

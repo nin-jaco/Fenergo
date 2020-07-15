@@ -22,10 +22,8 @@
     <div class="form-group">
         <label>Hardware Type</label>
         <div class="tt-container">
-            <input type="text" data-rule-validCustomer="true" value="" id="hardwareTypes" name="hardwareTypes" required class="form-control" />
+            <input type="text" data-rule-validHardwareType="true" value="" id="hardwareTypes" name="hardwareTypes" required class="form-control" />
         </div>
-
-        @*<ul id="hardwareTypes" name="hardwareTypes" class="list-group" data-rule-validHardwareType="true"></ul>*@
     </div>
     <div class="form-group">
         <label>Photo</label>
@@ -55,14 +53,14 @@
                 display: 'name',
                 source: hardwareTypes
             }).on("typeahead:select", function (e, hardwareType) {
-                vm.hardwareTypeId = hardwareType.Id;
+                vm.hardwareTypeId = hardwareType.id;
             });
 
         $.validator.addMethod("validHardwareType",
             function () {
                 return vm.hardwareTypeId && vm.hardwareTypeId !== 0;
             },
-            "please select a valid customer");
+            "please select a valid Hardware Type");
 
         var validator = $("#newHardware").validate({
             submitHandler: function () {

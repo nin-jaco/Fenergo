@@ -13,5 +13,6 @@ namespace Fenergo.Ui.Repositories
         int SaveChanges();
         void MarkAsModified(Photo item);
         void MarkAsModified(Hardware item);
+        void MarkAsModified(HardwareType item);
     }
 }

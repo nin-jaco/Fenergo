@@ -39,6 +39,11 @@ namespace Fenergo.Ui.Models
             Entry(item).State = EntityState.Modified;
         }
 
+        public void MarkAsModified(HardwareType item)
+        {
+            Entry(item).State = EntityState.Modified;
+        }
+
         public void MarkAsModified(Photo item)
         {
             Entry(item).State = EntityState.Modified;
